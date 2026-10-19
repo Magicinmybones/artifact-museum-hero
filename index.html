@@ -86,9 +86,23 @@ h1,p,figure{margin:0}
 .title .l2{letter-spacing:calc(-0.3058 * var(--u))}
 .scribble{position:absolute;left:calc(580 * var(--u));top:calc(848 * var(--u));width:calc(444 * var(--u));height:calc(102 * var(--u));overflow:visible;pointer-events:none}
 .scribble path{fill:var(--c-scribble)}
+/* One opening sequence. Backwards fill hides each group before its cue;
+   after its animation ends, the original authored styles take over. */
 @media (prefers-reduced-motion:no-preference){
-  .scribble path{animation:ink 1.1s .35s cubic-bezier(.6,.05,.25,1) both}
-  @keyframes ink{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  .logo{animation:entrance-ui .58s cubic-bezier(.16,1,.3,1) .08s backwards}
+  .nav ul{animation:entrance-ui .64s cubic-bezier(.16,1,.3,1) .19s backwards}
+  .ticket,.menu-btn{animation:entrance-ui .58s cubic-bezier(.16,1,.3,1) .31s backwards}
+  .card{animation:entrance-card .92s cubic-bezier(.22,1,.36,1) .25s backwards}
+  .year{animation:entrance-copy .56s cubic-bezier(.22,1,.36,1) .59s backwards}
+  .tagline{animation:entrance-copy .58s cubic-bezier(.22,1,.36,1) .72s backwards}
+  .title .l1{animation:entrance-type .88s cubic-bezier(.22,1,.36,1) .83s backwards}
+  .title .l2{animation:entrance-type .92s cubic-bezier(.22,1,.36,1) 1.01s backwards}
+  .scribble path{animation:entrance-ink .76s cubic-bezier(.6,.05,.25,1) 1.36s backwards}
+  @keyframes entrance-ui{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  @keyframes entrance-card{from{clip-path:inset(0 0 100% 0 round 20px)}to{clip-path:inset(0 0 0 0 round 20px)}}
+  @keyframes entrance-copy{from{opacity:0}to{opacity:1}}
+  @keyframes entrance-type{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes entrance-ink{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 }
 
 /* ───────────────────────── Small landscape screens ───────────────────────
